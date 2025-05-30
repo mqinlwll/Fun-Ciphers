@@ -3,7 +3,7 @@ import importlib
 
 def main():
     parser = argparse.ArgumentParser(description="Cipher Encoder/Decoder")
-    parser.add_argument("cipher", choices=["caesar", "a1z26"], help="Cipher to use")
+    parser.add_argument("cipher", choices=["caesar", "a1z26", "reverse_entire", "reverse_words"], help="Cipher to use")
     parser.add_argument("mode", choices=["encode", "decode", "brute_force"], help="Mode: encode, decode, or brute_force")
     parser.add_argument("input_file", help="Input text file")
     parser.add_argument("output_file", help="Output text file")
@@ -14,6 +14,8 @@ def main():
     cipher_to_module = {
         "caesar": "modules.Caesar",
         "a1z26": "modules.A1Z26",
+	"reverse_entire": "modules.ReverseEntire",
+	"reverse_words": "modules.ReverseWords"
     }
     module_name = cipher_to_module.get(args.cipher)
     if module_name is None:
